@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { InputControl, TextAreaControl } from './FormControls';
+import { InputControl, SelectControl, TextAreaControl } from './FormControls';
 
 test('Input Control', async () => {
   render(
@@ -29,4 +29,21 @@ test('Text Area', async () => {
   );
 
   const textAreaControl = screen.getByLabelText('bio');
+  expect(textAreaControl.name).toBe('bio');
+  expect(textAreaControl.required).toBe(true);
+  expect(textAreaControl.placeholder).toBe('Your Bio Here');
+});
+
+test('Select Control', async () => {
+  render (
+    <SelectControl label="Animal" name="animal" required>
+      <option>Cat</option>
+      <option>Dog</option>
+      <option>Rat</option>
+    </SelectControl>
+  );
+  const selectControl = screen.getByLabelText('Animal');
+  expect(selectControl.name).toBe('animal');
+  expect(selectControl.required).toBe(true);
+  expect(selectControl.options.length).toBe(3);
 });

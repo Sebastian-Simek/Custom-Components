@@ -7,12 +7,23 @@ export function InputControl({ label, ...rest }) {
   );
 }
 
-export function TextAreaControl() {
+export function TextAreaControl({ label, ...rest }) {
   return (
     <label>
-        Bio
-      <textarea  />
+      {label}
+      <textarea {...rest}  />
     </label>
 
+  );
+}
+
+export function SelectControl({ label, children, ...rest }) {
+  return (
+    <label>
+      {label}
+      <select {...rest}>
+        {children}
+      </select>
+    </label>
   );
 }
